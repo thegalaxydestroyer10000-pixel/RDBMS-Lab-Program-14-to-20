@@ -1,17 +1,9 @@
-USE CollegeDB;
-
-DROP PROCEDURE IF EXISTS CheckResult;
-
-DELIMITER $$
-
-CREATE PROCEDURE CheckResult(IN p_marks INT)
+DECLARE
+    num1 NUMBER := 10;
+    num2 NUMBER := 20;
+    sum_result NUMBER;
 BEGIN
-
-    -- Use IF-ELSE to check pass/fail
-
-END $$
-
-DELIMITER ;
-
--- Test the procedure
-CALL CheckResult(75);
+    sum_result := num1 + num2;
+    DBMS_OUTPUT.PUT_LINE('Sum = ' || sum_result);
+END;
+/
