@@ -7,20 +7,30 @@ DELIMITER $$
 CREATE PROCEDURE DisplayStudents()
 BEGIN
 
-    -- Declare variables
 
-    -- Declare cursor
+    SET SERVEROUTPUT ON;
 
-    -- Declare NOT FOUND handler
-
-    -- Open cursor
-
-    -- Fetch records using a loop
-
-    -- Close cursor
+DECLARE
+    CURSOR student_cursor IS
+        SELECT StudentID, StudentName, DepartmentID
+        FROM Student;
+BEGIN
+    FOR rec IN student_cursor LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            rec.StudentID || '  ' ||
+            rec.StudentName || '  ' ||
+            rec.DepartmentID
+        );
+    END LOOP;
+END;
+/
 
 END $$
 
 DELIMITER ;
 
 CALL DisplayStudents();
+
+
+
+
