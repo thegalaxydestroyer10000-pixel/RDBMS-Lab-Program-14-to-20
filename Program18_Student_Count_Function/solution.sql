@@ -14,9 +14,31 @@ BEGIN
 
     DECLARE student_count INT;
 
-    -- Count students belonging to the given department
+    SET SERVEROUTPUT ON;
 
-    -- Return the count
+CREATE OR REPLACE FUNCTION Count_Students(
+    p_dept IN INT
+)
+RETURN INT
+AS
+    total INT;
+BEGIN
+    SELECT COUNT(*)
+    INTO total
+    FROM Student
+    WHERE DepartmentID = p_dept;
+
+    RETURN total;
+END;
+/-- Count students belonging to the given department
+
+   DECLARE
+    result INT;
+BEGIN
+    result := Count_Students(10);
+    DBMS_OUTPUT.PUT_LINE('Number of Students = ' || result);
+END;
+/ -- Return the count
 
 END $$
 
@@ -24,3 +46,6 @@ DELIMITER ;
 
 -- Test
 SELECT CountStudentsByDepartment(1) AS StudentCount;
+
+
+
