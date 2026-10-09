@@ -22,7 +22,18 @@ AFTER INSERT ON Employee
 FOR EACH ROW
 BEGIN
 
-    -- Insert an automatic message into Employee_Log
+ SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE TRIGGER Employee_Insert_Trigger
+AFTER INSERT ON Employee
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('New employee record inserted successfully');
+END;
+/
+    INSERT INTO Employee
+VALUES(101, 'Arun');
+-- Insert an automatic message into Employee_Log
 
 END $$
 
@@ -36,3 +47,6 @@ VALUES (1, 'Arun', 'Computer Science');
 SELECT * FROM Employee;
 
 SELECT * FROM Employee_Log;
+
+
+
