@@ -28,7 +28,21 @@ CREATE PROCEDURE InsertStudent(
     IN p_department_id INT
 )
 BEGIN
+SET SERVEROUTPUT ON;
 
+CREATE OR REPLACE PROCEDURE Insert_Student(
+    p_id IN INT,
+    p_name IN VARCHAR,
+    p_dept IN INT
+)
+AS
+BEGIN
+    INSERT INTO Student(StudentID, StudentName, DepartmentID)
+    VALUES(p_id, p_name, p_dept);
+
+    DBMS_OUTPUT.PUT_LINE('Student record inserted successfully');
+END;
+/
     -- Insert the student record
 
 END $$
@@ -39,3 +53,7 @@ DELIMITER ;
 CALL InsertStudent(105, 'Kavin', 1);
 
 SELECT * FROM Student;
+
+
+
+
